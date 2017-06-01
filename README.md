@@ -1,8 +1,15 @@
 
 # Rekall Examples
 
+In this repository you can find several examples on how to use the Rekall API. With [Rekall](http://rekall.ai/) you can use an intuitive drag and drop interface to build a custom model and have it up and running within minutes. Rekall integrates with several popular image repositories, which makes training your model a breeze.
 
-## Image Recognition / Classify File
+Comprehensive developer documentation can be found at:
+
+[http://developer.rekall.ai/](developer.rekall.ai)
+
+## Image Classification
+
+### Classify File
 
 This example uploads a file, and then classifies that file using a public [Indoor VS Outdoor classification model](http://rekall.ai/dominiek/models/scene-types)
 
@@ -10,7 +17,7 @@ This example uploads a file, and then classifies that file using a public [Indoo
 python image_recognition/classify_file.py
 ```
 
-## Image Recognition / Classify URL
+### Classify URL
 
 Using the same model, but classify an image URL instead of a file:
 
@@ -18,7 +25,9 @@ Using the same model, but classify an image URL instead of a file:
 python image_recognition/classify_url.py
 ```
 
-## Video Analysis / Analyze Video URL
+## Video Analysis
+
+### Analyze Video URL
 
 Uses a public [Kitchen Items Model](http://rekall.ai/dominiek/models/kitchen-items) to identify different objects in a kitchen. This example gets the full analysis and summary of a video analysis.
 
@@ -26,7 +35,7 @@ Uses a public [Kitchen Items Model](http://rekall.ai/dominiek/models/kitchen-ite
 python video_analysis/classify_url.py
 ```
 
-## Video Analysis / Analyze Video File in Docker
+### Analyze Video File in Docker
 
 Here's an example of uploading a video file and performing a time series analysis in Docker.
 
