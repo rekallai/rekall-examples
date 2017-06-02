@@ -25,6 +25,14 @@ Using the same model, but classify an image URL instead of a file:
 python image_recognition/classify_url.py
 ```
 
+### Build model from folder of images
+
+This example uses the images in `files/indoor_vs_outdoor` and build an "Indoor VS Outdoor" classifier:
+
+```bash
+python image_recognition/build_model.py
+```
+
 ## Video Analysis
 
 ### Analyze Video URL
