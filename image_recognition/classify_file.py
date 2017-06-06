@@ -8,7 +8,7 @@ REKALL_AGENT_ID = '58feaa5782b0d80012c637ed'
 
 # Upload file, and get back an image object
 def upload_image(path):
-    req = requests.post('http://api.rekall.ai/1/cache/image/upload', **{
+    req = requests.post('https://api.rekall.ai/1/cache/image/upload', **{
         'files': {
             'file1': open(path,'rb')
         },
@@ -20,7 +20,7 @@ def upload_image(path):
 
 # Classify image object, returns None when queued, raises Exception on error
 def classify(image):
-    req = requests.post('http://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/run', **{
+    req = requests.post('https://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/run', **{
         'json': {
             'api_key': REKALL_API_KEY,
             'image_url': image['image_url'],

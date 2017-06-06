@@ -19,7 +19,7 @@ def call_api(method, path, params):
     else:
         options['json'] = params
     options['headers'] = {'X-Api-Key': REKALL_API_KEY}
-    req = requests.request(method, 'http://api.rekall.ai/1' + path, **options)
+    req = requests.request(method, 'https://api.rekall.ai/1' + path, **options)
     res = json.loads(req.text)
     if res.has_key('error'):
         raise Exception('API Error: {}'.format(res['error']['message']))
@@ -27,7 +27,7 @@ def call_api(method, path, params):
 
 # Upload file, and get back an image object
 def upload_class_image(model, klass, path):
-    req = requests.post('http://api.rekall.ai/1/models/{}/classes/{}/upload'.format(model['_id'], klass['_id']), **{
+    req = requests.post('https://api.rekall.ai/1/models/{}/classes/{}/upload'.format(model['_id'], klass['_id']), **{
         'files': {
             'file': open(path,'rb')
         },
@@ -77,7 +77,11 @@ for class_name in classes:
         print('Adding class: {}'.format(class_name))
         klass = call_api('POST', '/models/{}/classes'.format(model_id), {'name': class_name})
     image_dir = classes[class_name]
-    for file_path in os.listdir(image_dir):
+    image_files = [f for f in os.listdir(image_dir)]
+    images = call_api('GET', '/models/{}/classes/{}/images'.format(model_id, klass['_id']), {})
+    if len(images) == len(image_files):
+        continue
+    for file_path in image_files:
         full_path = image_dir + '/' + file_path
         if os.path.isfile(full_path):
             print('Uploading file: {}'.format(full_path))

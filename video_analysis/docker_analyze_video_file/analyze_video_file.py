@@ -23,7 +23,7 @@ print('REKALL_API_KEY', REKALL_API_KEY)
 print('REKALL_AGENT_ID', REKALL_AGENT_ID)
 
 def upload_video(path):
-    req = requests.post('http://api.rekall.ai/1/cache/image/upload', **{
+    req = requests.post('https://api.rekall.ai/1/cache/image/upload', **{
         'files': {
             'file1': open(path,'rb')
         },
@@ -38,7 +38,7 @@ def upload_video(path):
     return result['image_url'], result['image_uid']
 
 def create_video(name, video_url, video_uid):
-    req = requests.post('http://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos', **{
+    req = requests.post('https://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos', **{
         'json': {
             'api_key': REKALL_API_KEY,
             'video_url': video_url,
@@ -52,7 +52,7 @@ def create_video(name, video_url, video_uid):
     return res.get('result', None)
 
 def classify_video(video):
-    req = requests.post('http://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos/' + video['_id'] + '/classify', **{
+    req = requests.post('https://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos/' + video['_id'] + '/classify', **{
         'json': {
             'api_key': REKALL_API_KEY
         }
@@ -63,14 +63,14 @@ def classify_video(video):
     return res.get('result', None)
 
 def get_video_by_id(video_id):
-    req = requests.get('http://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos/' + video_id + '?api_key=' + REKALL_API_KEY)
+    req = requests.get('https://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos/' + video_id + '?api_key=' + REKALL_API_KEY)
     res = json.loads(req.text)
     if res.has_key('error'):
         raise Exception('API Error: {}'.format(res['error']['message']))
     return res.get('result', None)
 
 def get_video_by_name(name):
-    req = requests.get('http://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos?api_key=' + REKALL_API_KEY)
+    req = requests.get('https://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos?api_key=' + REKALL_API_KEY)
     res = json.loads(req.text)
     if res.has_key('error'):
         raise Exception('API Error: {}'.format(res['error']['message']))
@@ -80,14 +80,14 @@ def get_video_by_name(name):
     return None
 
 def get_video_analysis(video_id):
-    req = requests.get('http://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos/' + video_id + '/analysis?api_key=' + REKALL_API_KEY)
+    req = requests.get('https://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos/' + video_id + '/analysis?api_key=' + REKALL_API_KEY)
     res = json.loads(req.text)
     if res.has_key('error'):
         raise Exception('API Error: {}'.format(res['error']['message']))
     return res.get('result', None)
 
 def get_video_summary(video_id):
-    req = requests.get('http://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos/' + video_id + '/summary?api_key=' + REKALL_API_KEY)
+    req = requests.get('https://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/videos/' + video_id + '/summary?api_key=' + REKALL_API_KEY)
     res = json.loads(req.text)
     if res.has_key('error'):
         raise Exception('API Error: {}'.format(res['error']['message']))

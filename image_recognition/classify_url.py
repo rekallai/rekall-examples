@@ -10,7 +10,7 @@ image_url = 'https://storage.googleapis.com/rekall-examples/classification/lake.
 
 # Classify image url, returns None when queued, raises Exception on error
 def classify_url(image_url):
-    req = requests.post('http://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/run', **{
+    req = requests.post('https://api.rekall.ai/1/agents/' + REKALL_AGENT_ID + '/run', **{
         'json': {
             'api_key': REKALL_API_KEY,
             'image_url': image_url
